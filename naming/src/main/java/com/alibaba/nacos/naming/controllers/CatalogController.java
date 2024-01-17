@@ -64,9 +64,10 @@ public class CatalogController {
     public Object serviceDetail(@RequestParam(defaultValue = Constants.DEFAULT_NAMESPACE_ID) String namespaceId,
             String serviceName) throws NacosException {
         String serviceNameWithoutGroup = NamingUtils.getServiceName(serviceName);
-        String groupName = NamingUtils.getGroupName(serviceName);
+        String groupName = NamingUtils.getGroupName( serviceName );
         return judgeCatalogService().getServiceDetail(namespaceId, groupName, serviceNameWithoutGroup);
     }
+
     
     /**
      * List instances of special service.
@@ -90,19 +91,19 @@ public class CatalogController {
                 .listInstances(namespaceId, groupName, serviceNameWithoutGroup, clusterName);
         int start = (page - 1) * pageSize;
         int end = page * pageSize;
-        
+
+
         if (start < 0) {
             start = 0;
         }
-        
+
         if (start > instances.size()) {
             start = instances.size();
         }
-        
         if (end > instances.size()) {
             end = instances.size();
         }
-        
+
         ObjectNode result = JacksonUtils.createEmptyJsonNode();
         result.replace("list", JacksonUtils.transferToJsonNode(instances.subList(start, end)));
         result.put("count", instances.size());

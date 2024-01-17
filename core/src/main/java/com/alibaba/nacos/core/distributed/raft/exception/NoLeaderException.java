@@ -27,19 +27,19 @@ public class NoLeaderException extends Exception {
     
     public NoLeaderException() {
     }
-    
+
     public NoLeaderException(String group) {
         super("The Raft Group [" + group + "] did not find the Leader node");
     }
-    
+
     public NoLeaderException(String message, Throwable cause) {
         super(message, cause);
     }
-    
+
     public NoLeaderException(Throwable cause) {
         super(cause);
     }
-    
+
     public NoLeaderException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
